@@ -18,7 +18,7 @@ public class ProductController{
   }
 
   @PostMapping("/products/filter")
-  public JsonNode getProductsByFilter(@RequestBody ProductDto product) {
+  public JsonNode getProductsByFilter(@RequestBody String name) {
     return webClient.post()
         .uri(uriBuilder -> uriBuilder
             .path("/api/products/filter")
@@ -26,7 +26,7 @@ public class ProductController{
         .attributes(clientRegistrationId("keycloak"))
         .contentType(MediaType.APPLICATION_JSON)
         .accept(MediaType.APPLICATION_JSON)
-        .bodyValue(product)
+        .bodyValue(name)
         .retrieve()
         .bodyToMono(JsonNode.class)
         .block();
