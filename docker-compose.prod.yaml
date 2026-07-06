@@ -1,0 +1,15 @@
+services:
+  app:
+    build:
+      context: .
+    image: serpntbff:latest
+    container_name: serpntbff_app
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      SERVER_PORT: 8082
+      KEYCLOAK_CLIENT_SECRET: ${KEYCLOAK_CLIENT_SECRET}
+      KEYCLOAK_REDIRECT_URI: ${KEYCLOAK_REDIRECT_URI}
+      KEYCLOAK_ISSUER_URI: ${KEYCLOAK_ISSUER_URI}
+      MAIN_URI: ${MAIN_URI}
+      BACKEND_API_DOMAIN: ${BACKEND_API_DOMAIN:-http://127.0.0.1:8081}

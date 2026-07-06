@@ -1,0 +1,22 @@
+server:
+  port: 8082
+app:
+  main-uri: ${MAIN_URI}
+  backend-api-domain: ${BACKEND_API_DOMAIN:http://127.0.0.1:8081}
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: serpnt
+            client-secret: ${KEYCLOAK_CLIENT_SECRET}
+            authorization-grant-type: authorization_code
+            redirect-uri: ${KEYCLOAK_REDIRECT_URI}
+            scope:
+             - openid
+             - profile
+             - offline_access
+        provider:
+          keycloak:
+            issuer-uri: ${KEYCLOAK_ISSUER_URI}
